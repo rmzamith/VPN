@@ -15,10 +15,6 @@ terraform {
   backend "s3" {}
 }
 
-module "secrets" {
-  source = "git::ssh://git@github.dev.dealertrack.com/FNI-ProdEng/secrets.git"
-}
-
 module "compute" {
   source = "../../modules/compute"
 
