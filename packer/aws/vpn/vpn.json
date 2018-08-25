@@ -6,8 +6,7 @@
     "name":              "aws-ubuntu-vpn",
     "ssh_username":      "ubuntu",
     "scripts_dir":       "../../scripts",
-    "config_dir_name":   "scripts",
-    "artifactory_version": null
+    "config_dir_name":   "scripts"
   },
   "builders": [
     {

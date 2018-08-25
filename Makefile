@@ -28,13 +28,5 @@ endif
 
 .PHONY: ami
 ami: check-packer
-	@(cd ./packer/aws/bpn/; packer build \
+	@(cd ./packer/aws/vpn/; packer build \
 	    ./vpn.json)
-	    
-# .PHONY: plan
-# plan: check-tf check-tg
-# 	terragrunt plan
-#
-# .PHONY: apply
-# apply: check-tf check-tg
-# 	terragrunt apply
