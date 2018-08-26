@@ -85,11 +85,13 @@ resource "aws_instance" "vpn_app" {
     Name        = "vpn-app"
   }
 
-  connection {
-    user = "ubuntu"
-    private_key = "${file(var.template_file.private_key_file)}"
-  }
   provisioner "remote-exec" {
+
+    connection {
+      user = "ubuntu"
+      private_key = "${file(data.template_file.private_key_file)}"
+    }
+
     inline = [
       "echo PUBLIC_IP=\"${aws_eip.vpn_ip.public_ip}\" >> /ops/config.sh",
       "sh /ops/openvpn.sh"
