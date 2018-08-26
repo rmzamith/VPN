@@ -67,7 +67,7 @@ resource "aws_key_pair" "vpn-key" {
 
 resource "aws_instance" "vpn_app" {
   ami                    = "${data.aws_ami.ami.id}"
-  instance_type          = "m4.large"
+  instance_type          = "t2.micro"
   key_name               = "${var.instance_key_name}"
   vpc_security_group_ids = ["${aws_security_group.vpn_sg.id}"]
   subnet_id              = "${element(data.aws_subnet_ids.all_vpc_subnets.ids, count.index)}"
