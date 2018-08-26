@@ -11,6 +11,13 @@ data "aws_subnet_ids" "all_vpc_subnets" {
   vpc_id = "${var.vpc_id}"
 }
 
+data "template_file" "private_key_file" {
+  template = "~/.ssh/$${instance_key_name}.pem"
+  vars {
+    instance_key_name = "${var.instance_key_name}"
+  }
+}
+
 resource "aws_security_group" "vpn_sg" {
   name        = "vpn-sg"
   description = "VPN inbound traffic"
@@ -76,6 +83,11 @@ resource "aws_instance" "vpn_app" {
   tags {
     Application = "vpn"
     Name        = "vpn-app"
+  }
+
+  connection {
+    user = "ubuntu"
+    private_key = "${file(var.template_file.private_key_file)}"
   }
   provisioner "remote-exec" {
     inline = [
