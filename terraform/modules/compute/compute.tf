@@ -89,7 +89,7 @@ resource "aws_instance" "vpn_app" {
 
     connection {
       user = "ubuntu"
-      private_key = "${file(data.template_file.private_key_file)}"
+      private_key = "${file(data.template_file.private_key_file.template)}"
     }
 
     inline = [
