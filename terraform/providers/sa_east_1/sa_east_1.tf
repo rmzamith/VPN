@@ -24,4 +24,5 @@ module "compute" {
 
   vpc_id               = "${var.vpc_id}"
   instance_key_name    = "${var.instance_key_name}"
+  intance_public_key    = "${var.intance_public_key}"
 }
