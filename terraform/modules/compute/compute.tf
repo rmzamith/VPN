@@ -93,8 +93,8 @@ resource "aws_instance" "vpn_app" {
     }
 
     inline = [
-      "echo PUBLIC_IP=\"${aws_eip.vpn_ip.public_ip}\" >> /ops/config.sh",
-      "sh /ops/openvpn.sh"
+      "sudo echo PUBLIC_IP=\"${aws_eip.vpn_ip.public_ip}\" >> /ops/config.sh",
+      "sudo sh /ops/openvpn.sh"
     ]
   }
 }

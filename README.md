@@ -22,6 +22,8 @@ Set the required env vars - `AWS_ACCESS_KEY_ID`,
 On `terraform/providers/sa_east_1` edit the variables defined on the botton of the 
 `terraform.tfvars` to correspond to your aws vpc, key name and public key content.
 
+Your private key will have to be located on the host, inside `~/.ssh`.
+
 ###### STEP 3
 
 Run terragrunt to plan and apply resources from the correct environment
