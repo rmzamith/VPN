@@ -77,13 +77,12 @@ resource "aws_instance" "vpn_app" {
     Application = "vpn"
     Name        = "vpn-app"
   }
-  provisioner "local-exec" {
-    command = "echo PUBLIC_IP=\"${aws_eip.vpn_ip.public_ip}\" >> /ops/config.sh"
+  provisioner "remote-exec" {
+    inline = [
+      "echo PUBLIC_IP=\"${aws_eip.vpn_ip.public_ip}\" >> /ops/config.sh",
+      "sh /ops/openvpn.sh"
+    ]
   }
-  provisioner "local-exec" {
-    command = "sh /ops/openvpn.sh"
-  }
-
 }
 
 resource "aws_eip_association" "eip_assoc" {
