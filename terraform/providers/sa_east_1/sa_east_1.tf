@@ -6,6 +6,10 @@ variable instance_key_name {
   description = "The name of the key to access the server instances"
 }
 
+variable intance_public_key {
+  description = "The public key used to access the server instances"
+}
+
 provider "aws" {
   region = "sa-east-1"
 }
