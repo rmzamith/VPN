@@ -41,13 +41,6 @@
       "type": "file",
       "source": "{{user `scripts_dir`}}/.",
       "destination": "/ops/"
-    },
-    {
-      "type": "shell",
-      "execute_command": "echo {{user `ssh_username`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
-      "inline": [
-        "chmod 777 /ops/*"
-      ]
     }
   ]
 }
