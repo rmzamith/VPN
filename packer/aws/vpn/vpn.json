@@ -46,14 +46,7 @@
       "type": "shell",
       "execute_command": "echo {{user `ssh_username`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
-        "chmod 777 /ops/"
-      ]
-    },
-    {
-      "type": "shell",
-      "execute_command": "echo {{user `ssh_username`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
-      "inline": [
-        "/bin/bash /ops/ubuntu.sh"
+        "chmod 777 /ops/*"
       ]
     }
   ]
