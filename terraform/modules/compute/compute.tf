@@ -3,7 +3,7 @@ data "aws_ami" "ami" {
 
   filter {
     name   = "name"
-    values = ["aws-ubuntu-vpn*"]
+    values = ["aws-amzlnx-vpn*"]
   }
 }
 
@@ -88,15 +88,14 @@ resource "aws_instance" "vpn_app" {
   provisioner "remote-exec" {
 
     connection {
-      user = "ubuntu"
+      user = "ec2-user"
       private_key = "${file(data.template_file.private_key_file.rendered)}"
     }
 
     inline = [
       "sudo echo PUBLIC_IP=\\\"${aws_eip.vpn_ip.public_ip}\\\" >> /ops/config.sh",
       "sudo chmod 777 /ops/*",
-      "sudo /bin/bash /ops/ubuntu.sh",
-      "sudo /bin/bash /ops/openvpn.sh"
+      "sudo /bin/bash /ops/linux.sh"
     ]
   }
 }

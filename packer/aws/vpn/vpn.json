@@ -3,9 +3,10 @@
     "aws_access_key":    "{{env `AWS_ACCESS_KEY_ID`}}",
     "aws_secret_key":    "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "aws_session_token": "{{env `AWS_SESSION_TOKEN`}}",
-    "name":              "aws-ubuntu-vpn",
-    "ssh_username":      "ubuntu",
+    "name":              "aws-amzlnx-vpn",
+    "ssh_username":      "ec2-user",
     "scripts_dir":       "../../scripts",
+    "conf_dir":          "../../conf",
     "config_dir_name":   "scripts"
   },
   "builders": [
@@ -17,7 +18,7 @@
       "region":          "sa-east-1",
       "vpc_id":          "",
       "subnet_id":       "",
-      "source_ami":      "ami-08b78b890b5a86161",
+      "source_ami":      "ami-07b14488da8ea02a0",
       "instance_type":   "t2.micro",
       "ssh_username":    "{{user `ssh_username`}}",
       "ssh_timeout":     "10m",
@@ -40,6 +41,11 @@
     {
       "type": "file",
       "source": "{{user `scripts_dir`}}/.",
+      "destination": "/ops/"
+    },
+    {
+      "type": "file",
+      "source": "{{user `conf_dir`}}/.",
       "destination": "/ops/"
     }
   ]
